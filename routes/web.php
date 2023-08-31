@@ -35,7 +35,7 @@ Route::get('/new/{id}', static function (int $id): string {
     return "News with #ID {$id}";
 });
 
-// Route::get('/news', [NewsController::class, 'index']);
-// Route::get('/news/{id}/show', [NewsController::class, 'show']);
+Route::get('/news', [NewsController::class, 'index']);
+Route::get('/news/{id}/show', [NewsController::class, 'show']);
     
 
