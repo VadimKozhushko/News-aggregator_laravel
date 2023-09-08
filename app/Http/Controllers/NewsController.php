@@ -6,13 +6,33 @@ use Illuminate\Http\Request;
 
 class NewsController extends Controller
 {
-    public function index()
-    {
-        return "Show news list";
-    }
+    use NewsTrait;
 
-    public function show(int $id)
-    {
-        return "Show news whith #ID ".$id;
+    public function welcome() {
+        return view(
+                'news.welcome',[
+                'news' => $this->getNews(),
+                'categories' => $this->getCategories()
+                ]
+        );
+    }
+    public function showCategoryNews(int $id) {
+        return view(
+                'news.showCategoryNews',[
+                'news' => $this->getNews(),
+                'categories' => $this->getCategories($id)
+                ]
+        );
+    }
+    public function index() { 
+
+       return view('news.index',[
+           'news' => $this->getNews()
+       ]);
+    }
+    public function show(int $id) {
+        return view('news.show',[
+            'news' => $this->getNews($id)
+        ]);
     }
 }
