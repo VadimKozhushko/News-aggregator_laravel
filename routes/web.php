@@ -27,15 +27,28 @@ Route::get('/info/{info}', static function (string $info): string {
     return "Information abot us {$info}";
 });
 
-Route::get('/news/{all}', static function (string $all): string {
-    return "Page with all news, {$all}";
-});
+// Route::get('/news/{all}', static function (string $all): string {
+//     return "Page with all news, {$all}";
+// });
 
-Route::get('/new/{id}', static function (int $id): string {
-    return "News with #ID {$id}";
-});
+// Route::get('/new/{id}', static function (int $id): string {
+//     return "News with #ID {$id}";
+// });
 
 // Route::get('/news', [NewsController::class, 'index']);
-// Route::get('/news/{id}/show', [NewsController::class, 'show']);
+// Route::get('/news/{id}/show', [NewsController::class, 'show'])
+// ->where('id','\d+');
     
+Route::get('/',[NewsController::class, 'welcome'])
+        ->name('main');
+Route::get('/show_category_news/{id}', [NewsController::class, 'showCategoryNews'])
+        ->name('show.category.news')
+        ->where('id','\d+');
+
+
+Route::get('/news', [NewsController::class, 'index'])
+        ->name('news');
+Route::get('/news/{id}/show', [NewsController::class, 'show'])
+        ->name('news.show')
+        ->where('id','\d+');
 
